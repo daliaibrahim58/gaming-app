@@ -1,0 +1,118 @@
+{
+  "games": [
+    {
+      "id": 1,
+      "title": "Grand Theft Auto V",
+      "slug": "grand-theft-auto-v",
+      "cover": "/images/games/gameOne/cover.jpg",
+      "genre": "Action",
+      "rating": 4.9,
+      "price": 29.99,
+      "description": "Explore the vast open world of Los Santos, complete missions, and experience an immersive criminal adventure.",
+      "screenshots": [
+        "/images/games/gameOne/ss1.jpg",
+        "/images/games/gameOne/ss2.webp",
+        "/images/games/gameOne/ss3.webp",
+        "/images/games/gameOne/ss4.jpg",
+        "/images/games/gameOne/ss5.jpg"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Minecraft",
+      "slug": "minecraft",
+      "cover": "/images/games/gameTwo/cover.jpg",
+      "genre": "Sandbox",
+      "rating": 4.8,
+      "price": 26.95,
+      "description": "Build, explore, and survive in endless procedurally generated worlds with your friends.",
+      "screenshots": [
+        "/images/games/gameTwo/ss1.jpg",
+        "/images/games/gameTwo/ss2.jpg",
+        "/images/games/gameTwo/ss3.avif"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Call of Duty: Black Ops 6",
+      "slug": "call-of-duty-black-ops-6",
+      "cover": "/images/games/gameThree/cover.jpg",
+      "genre": "Shooter",
+      "rating": 4.5,
+      "price": 69.99,
+      "description": "Join intense battles across multiple game modes featuring fast-paced combat and tactical gameplay.",
+      "screenshots": [
+        "/images/games/gameThree/ss1.jpg",
+        "/images/games/gameThree/ss2.jpg",
+        "/images/games/gameThree/ss3.jpg"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "The Witcher 3: Wild Hunt",
+      "slug": "the-witcher-3-wild-hunt",
+      "cover": "/images/games/gameFour/cover.jpg",
+      "genre": "RPG",
+      "rating": 4.9,
+      "price": 39.99,
+      "description": "Embark on an epic fantasy journey filled with monsters, memorable characters, and meaningful choices.",
+      "screenshots": [
+        "/images/games/gameFour/ss1.jpg",
+        "/images/games/gameFour/ss2.jpg",
+        "/images/games/gameFour/ss3.webp"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Red Dead Redemption 2",
+      "slug": "red-dead-redemption-2",
+      "cover": "/images/games/gameFive/cover.jpg",
+      "genre": "Adventure",
+      "rating": 4.9,
+      "price": 59.99,
+      "description": "Experience life in the American frontier through a rich story packed with action and exploration.",
+      "screenshots": [
+        "/images/games/gameFive/ss1.webp",
+        "/images/games/gameFive/ss2.webp"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "God of War Ragnarök",
+      "slug": "god-of-war-ragnarok",
+      "cover": "/images/games/gameSix/cover.jpg",
+      "genre": "Action Adventure",
+      "rating": 4.8,
+      "price": 69.99,
+      "description": "Join Kratos and Atreus on a legendary journey through the realms of Norse mythology.",
+      "screenshots": ["/images/games/gameSix/ss1.jpg"]
+    },
+    {
+      "id": 7,
+      "title": "Cyberpunk 2077",
+      "slug": "cyberpunk-2077",
+      "cover": "/images/games/gameSeven/cover.jpg",
+      "genre": "RPG",
+      "rating": 4.6,
+      "price": 49.99,
+      "description": "Explore Night City, a futuristic metropolis where your choices shape the story and your destiny.",
+      "screenshots": [
+        "/images/games/gameSeven/ss1.jpg",
+        "/images/games/gameSeven/ss2.jpg",
+        "/images/games/gameSeven/ss3.jpg",
+        "/images/games/gameSeven/ss4.jpg"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Valorant",
+      "slug": "valorant",
+      "cover": "/images/games/gameEight/cover.jpg",
+      "genre": "Tactical Shooter",
+      "rating": 4.7,
+      "price": 150.89,
+      "description": "Compete in tactical 5v5 matches using unique agents and strategic teamwork.",
+      "screenshots": []
+    }
+  ]
+}
