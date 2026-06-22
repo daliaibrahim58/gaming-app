@@ -8,10 +8,12 @@ import Logo from "../defaults/Logo";
 import { useAppSelector } from "@/redux/hooks";
 import { logout } from "@/redux/slices/authSlice";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 
 function NavBar() {
   const dispatch = useDispatch();
   const pathname = usePathname();
+  const router = useRouter();
 
   const user = useAppSelector((state) => state.auth.user);
   const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
@@ -52,7 +54,10 @@ function NavBar() {
 
             {/* LOGOUT */}
             <button
-              onClick={() => dispatch(logout())}
+              onClick={() => {
+                dispatch(logout());
+                router.push("./");
+              }}
               className="rounded-xl bg-red-500/20 px-3 py-1.5 text-red-300 transition hover:bg-red-500/30"
             >
               Logout
