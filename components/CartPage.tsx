@@ -1,7 +1,6 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-
 import {
   increaseQuantity,
   decreaseQuantity,
@@ -11,7 +10,6 @@ import Image from "next/image";
 
 function CartPage() {
   const dispatch = useAppDispatch();
-
   const items = useAppSelector((state) => state.cart.items);
 
   const total = items.reduce(
@@ -34,7 +32,7 @@ function CartPage() {
         {items.map((item) => (
           <div
             key={item.id}
-            className="flex items-center justify-between bg-white/10 p-4 rounded-lg"
+            className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-white/10 p-4 rounded-lg gap-4"
           >
             {/* LEFT */}
             <div className="flex items-center gap-4">
@@ -53,7 +51,7 @@ function CartPage() {
             </div>
 
             {/* RIGHT - CONTROLS */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 sm:justify-end">
               <button
                 onClick={() => dispatch(decreaseQuantity(item.id))}
                 className="px-2 text-xl"
@@ -72,7 +70,7 @@ function CartPage() {
 
               <button
                 onClick={() => dispatch(removeFromCart(item.id))}
-                className="ml-4 text-red-500"
+                className="ml-0 sm:ml-4 text-red-500"
               >
                 Remove
               </button>

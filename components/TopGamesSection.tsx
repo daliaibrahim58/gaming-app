@@ -35,7 +35,7 @@ export default function TopGamesSection() {
               transition={{ delay: index * 0.2, duration: 0.5 }}
               whileHover={{ scale: 1.05 }}
             >
-              <div className="relative w-full h-40">
+              <div className="relative w-full h-20 md:h-40">
                 <Image
                   src={game.cover}
                   alt={game.title}

@@ -21,24 +21,36 @@ export default function SignInPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const found = users.find(
-      (u) => u.email === email && u.password === password
-    );
+    const userByEmail = users.find((u) => u.email === email);
 
-    if (!found) {
+    // 1. User not found at all
+    if (!userByEmail) {
       setAlert({
         status: "error",
         title: "Login Failed",
-        desc: "Invalid email or password",
+        desc: "User not found",
+      });
+
+      router.push("./signUp");
+      return;
+    }
+
+    // 2. Email exists but password is wrong
+    if (userByEmail.password !== password) {
+      setAlert({
+        status: "error",
+        title: "Invalid Password",
+        desc: "Password is incorrect",
       });
       return;
     }
 
+    // 3. Success
     const token = `token-${Date.now()}`;
 
-    dispatch(login({ user: found, token }));
+    dispatch(login({ user: userByEmail, token }));
 
-    localStorage.setItem("user", JSON.stringify(found));
+    localStorage.setItem("user", JSON.stringify(userByEmail));
     localStorage.setItem("token", token);
 
     setAlert({

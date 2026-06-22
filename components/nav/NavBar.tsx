@@ -7,14 +7,18 @@ import { useDispatch } from "react-redux";
 import Logo from "../defaults/Logo";
 import { useAppSelector } from "@/redux/hooks";
 import { logout } from "@/redux/slices/authSlice";
+import { usePathname } from "next/navigation";
 
 function NavBar() {
   const dispatch = useDispatch();
+  const pathname = usePathname();
 
   const user = useAppSelector((state) => state.auth.user);
-  const isAuthenticated = useAppSelector(
-    (state) => state.auth.isAuthenticated
-  );
+  const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
+
+  if (pathname.startsWith("/auth")) {
+    return;
+  }
 
   return (
     <header className="flex h-16 w-full items-center justify-between border-b border-white/10 bg-linear-to-r from-[#1B0B2E] via-[#24104A] to-[#12081F] px-4 text-white md:px-8">
