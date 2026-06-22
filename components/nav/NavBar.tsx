@@ -8,7 +8,7 @@ import Logo from "../defaults/Logo";
 import { useAppSelector } from "@/redux/hooks";
 import { logout } from "@/redux/slices/authSlice";
 import { usePathname } from "next/navigation";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 function NavBar() {
   const dispatch = useDispatch();

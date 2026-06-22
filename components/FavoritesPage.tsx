@@ -3,11 +3,13 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { toggleFavorite } from "@/redux/slices/favoritesSlice";
 import Image from "next/image";
-import { Heart } from "lucide-react"; //  Import Lucide icon
+import { Heart } from "lucide-react";
 
 function FavoritesPage() {
   const dispatch = useAppDispatch();
   const favorites = useAppSelector((state) => state.favorites.items);
+
+  const isFavorite = (id: number) => favorites.some((item) => item.id === id);
 
   if (favorites.length === 0) {
     return (
@@ -37,6 +39,7 @@ function FavoritesPage() {
                 height={60}
                 className="rounded object-cover"
               />
+
               <h2 className="font-bold">{item.title}</h2>
             </div>
 
@@ -51,9 +54,16 @@ function FavoritesPage() {
                   }),
                 )
               }
-              className="flex items-center gap-2 text-red-500 hover:text-red-400"
+              className="flex items-center gap-2"
             >
-              <Heart className="w-5 h-5" /> Remove
+              <Heart
+                className={`w-5 h-5 transition-colors ${
+                  isFavorite(item.id)
+                    ? "text-red-500 fill-red-500"
+                    : "text-white"
+                }`}
+              />
+              Remove
             </button>
           </div>
         ))}

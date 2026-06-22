@@ -1,18 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { login } from "@/redux/slices/authSlice";
 import { AlertDemo } from "@/components/shared/AlertDemo";
-import type { RootState } from "@/redux/store";
 
 export default function SignInPage() {
   const dispatch = useDispatch();
   const router = useRouter();
-
-  const users = useSelector((state: RootState) => state.auth.users);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,21 +19,23 @@ export default function SignInPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const userByEmail = users.find((u) => u.email === email);
+    //  read directly (no useEffect, no state)
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
 
-    // 1. User not found at all
+    const userByEmail = users.find((u: any) => u.email === email);
+
     if (!userByEmail) {
       setAlert({
         status: "error",
         title: "Login Failed",
         desc: "User not found",
       });
+      console.log(users)
 
-      router.push("./signUp");
+      setTimeout(() => router.push("/auth/signUp"), 800);
       return;
     }
 
-    // 2. Email exists but password is wrong
     if (userByEmail.password !== password) {
       setAlert({
         status: "error",
@@ -45,7 +45,6 @@ export default function SignInPage() {
       return;
     }
 
-    // 3. Success
     const token = `token-${Date.now()}`;
 
     dispatch(login({ user: userByEmail, token }));
@@ -55,7 +54,7 @@ export default function SignInPage() {
 
     setAlert({
       status: "success",
-      title: "Login",
+      title: "Login Success",
       desc: "Welcome back 🎉",
     });
 
@@ -63,7 +62,7 @@ export default function SignInPage() {
   };
 
   return (
-    <>
+    <div className="max-w-md mx-auto mt-10">
       <h1 className="text-2xl font-bold text-center mb-6">Sign In</h1>
 
       {alert && (
@@ -94,6 +93,6 @@ export default function SignInPage() {
           Sign In
         </button>
       </form>
-    </>
+    </div>
   );
 }

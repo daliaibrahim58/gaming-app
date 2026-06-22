@@ -9,8 +9,8 @@ type User = {
 };
 
 type AuthState = {
-  user: User | null;        // logged in user
-  users: User[];            // all registered users
+  user: User | null; // logged in user
+  users: User[]; // all registered users
   token: string | null;
   isAuthenticated: boolean;
 };
@@ -27,12 +27,16 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     signup: (state, action: PayloadAction<{ user: User; token: string }>) => {
-      state.users.push(action.payload.user);
+      const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
+
+      const updatedUsers = [...existingUsers, action.payload.user];
+
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isAuthenticated = true;
     },
-
     login: (state, action: PayloadAction<{ user: User; token: string }>) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
