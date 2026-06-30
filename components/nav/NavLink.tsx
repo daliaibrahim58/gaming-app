@@ -12,9 +12,15 @@ type Props = {
   item: any;
   collapsed?: boolean;
   setAlert: any;
+  isSideOpen: boolean;
 };
 
-function NavLink({ item, collapsed, setAlert }: Props) {
+function NavLink({
+  item,
+  collapsed,
+  setAlert,
+  isSideOpen,
+}: Props) {
   const pathname = usePathname();
   const router = useRouter();
   const user = useAppSelector((state) => state.auth.user);
@@ -25,13 +31,17 @@ function NavLink({ item, collapsed, setAlert }: Props) {
     item.href === "/"
       ? pathname === "/"
       : item.href
-        ? pathname.startsWith(item.href)
-        : false;
+      ? pathname.startsWith(item.href)
+      : false;
 
   const common = `
     flex items-center gap-3 px-4 py-3 rounded-xl
     transition-all duration-300
-    ${isActive ? `bg-gradient-to-r ${item.gradient}` : "hover:bg-white/5"}
+    ${
+      isActive && isSideOpen
+        ? `bg-gradient-to-r ${item.gradient}`
+        : "hover:bg-white/5"
+    }
   `;
 
   const handleClick = () => {
@@ -41,6 +51,7 @@ function NavLink({ item, collapsed, setAlert }: Props) {
         title: "Access denied",
         desc: "Please login first",
       });
+
       setTimeout(() => setAlert(null), 1500);
       return;
     }
@@ -51,12 +62,21 @@ function NavLink({ item, collapsed, setAlert }: Props) {
   if (item.hasDropdown) {
     return (
       <div className="flex flex-col">
-        <button onClick={() => setOpen(!open)} className={common}>
+        <button
+          onClick={() => setOpen(!open)}
+          className={common}
+        >
           {item.icon}
+
           {!collapsed && <span>{item.name}</span>}
-          <MdKeyboardArrowDown
-            className={`ml-auto transition ${open ? "rotate-180" : ""}`}
-          />
+
+          {!collapsed && (
+            <MdKeyboardArrowDown
+              className={`ml-auto transition-transform duration-300 ${
+                open ? "rotate-180" : ""
+              }`}
+            />
+          )}
         </button>
 
         {!collapsed && open && <DropMenu />}
@@ -67,6 +87,7 @@ function NavLink({ item, collapsed, setAlert }: Props) {
   return (
     <button onClick={handleClick} className={common}>
       {item.icon}
+
       {!collapsed && <span>{item.name}</span>}
     </button>
   );
