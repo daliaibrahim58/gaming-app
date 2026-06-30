@@ -57,7 +57,7 @@ function SideBar({ isOpen, onToggle }: any) {
     <>
      <aside
   className={`fixed top-0 left-0 z-50 h-screen border-r border-white/10 bg-linear-to-b from-[#1B0B2E] via-[#24104A] to-[#12081F] flex flex-col transition-all duration-300 ${
-    isOpen ? "w-64" : "w-20"
+    isOpen ? "w-64" : "w-0"
   }`}
 >
         {/* TOGGLE */}
