@@ -76,6 +76,7 @@ function SideBar({ isOpen, onToggle }: any) {
               item={item}
               collapsed={!isOpen}
               setAlert={setAlert}
+              isSideOpen={isOpen}
             />
           ))}
         </nav>
