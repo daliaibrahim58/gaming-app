@@ -1,9 +1,10 @@
 "use client";
 
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+
 import SideBar from "@/components/nav/SideBar";
 import SectionWrapper from "./SectionWrapper";
-
-import { useState } from "react";
 
 export default function DashboardLayout({
   children,
@@ -11,13 +12,18 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const pathname = usePathname();
+
+  const hideSidebar = pathname.startsWith("/auth");
 
   return (
     <div className="flex flex-1 w-screen max-w-full overflow-x-hidden">
-      <SideBar
-        isOpen={isSidebarOpen}
-        onToggle={() => setIsSidebarOpen((prev) => !prev)}
-      />
+      {!hideSidebar && (
+        <SideBar
+          isOpen={isSidebarOpen}
+          onToggle={() => setIsSidebarOpen((prev) => !prev)}
+        />
+      )}
 
       <SectionWrapper>{children}</SectionWrapper>
     </div>
